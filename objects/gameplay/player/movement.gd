@@ -43,16 +43,17 @@ func _ready():
 
 # runs every frame
 func _process(delta):
-	# collect inputs (check Project Settings -> Input Map)
-	
-	# the direction the player wants to move--gathered from buttons or joystick
-	input_dir.x = clamp(Input.get_axis("left", "right"), -1.0, 1.0)
-	
-	# whether the player pressed jump this frame
-	jump_just_pressed = Input.is_action_just_pressed("jump")
+	pass
 
 # runs every physics frame (60 times per second)
 func _physics_process(delta):
+	# collect inputs (check Project Settings -> Input Map)
+	## the direction the player wants to move--gathered from buttons or joystick
+	input_dir.x = clamp(Input.get_axis("left", "right"), -1.0, 1.0)
+	
+	## whether the player pressed jump this frame
+	jump_just_pressed = Input.is_action_just_pressed("jump")
+	
 	# convert inputs into movement
 	update_velocities(input_dir, jump_just_pressed, delta)
 	p.move_and_slide()
@@ -101,27 +102,6 @@ func update_velocities(dir: Vector2, jump: bool, delta: float):
 # (until they provide another input)
 func cancel_movement():
 	p.velocity = Vector2.ZERO
-
-# update movement config with external values
-# only used by movement tuner
-func update_config(start_accel: float, 
-				   stop_accel:float, 
-				   max_speed: float,
-				   jump_height: float,
-				   sticky_distance: float,
-				   coyote_duration: float,
-				   first_half_grav: float,
-				   second_half_grav: float,
-				   air_strafe_multiplier: float):
-	self.start_accel = start_accel
-	self.stop_accel = stop_accel
-	self.max_speed = max_speed
-	self.jump_height = jump_height
-	self.sticky_distance = sticky_distance
-	self.coyote_duration = coyote_duration
-	self.first_half_grav = first_half_grav
-	self.second_half_grav = second_half_grav
-	self.air_strafe_multiplier = air_strafe_multiplier
 
 # calculate jump velocity based on desired jump height
 func calculate_jump(jump_height: float):

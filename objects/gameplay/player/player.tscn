@@ -29,6 +29,8 @@ script = ExtResource("1_0aaha")
 shape = SubResource("RectangleShape2D_0aaha")
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=405596321]
+position = Vector2(0, 9.536743e-07)
+scale = Vector2(0.5625, 0.703125)
 sprite_frames = SubResource("SpriteFrames_n4040")
 
 [node name="movement" type="Node2D" parent="." unique_id=1307021890 node_paths=PackedStringArray("sprite")]
