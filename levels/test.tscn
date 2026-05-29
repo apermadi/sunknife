@@ -1,9 +1,31 @@
-[gd_scene format=3 uid="uid://dlsh5xijwkk22"]
+[gd_scene format=4 uid="uid://dlsh5xijwkk22"]
 
 [ext_resource type="PackedScene" uid="uid://d2cpkb6ojjjst" path="res://objects/gameplay/player/player.tscn" id="1_72lju"]
+[ext_resource type="TileSet" uid="uid://rlkl4qdm0mes" path="res://assets/tiles/arcade.tres" id="2_lkjt4"]
+
+[sub_resource type="GDScript" id="GDScript_lkjt4"]
+resource_name = "test"
+script/source = "extends Node2D
+
+func _input(event):
+	if event.is_action_pressed(\"reset\"):
+		reset()
+	
+	if event.is_action_pressed(\"exit\"):
+		get_tree().quit()
+
+# resets the level
+func reset():
+	get_tree().change_scene_to_file(\"res://levels/test.tscn\")
+"
 
 [node name="test" type="Node2D" unique_id=676496790]
+script = SubResource("GDScript_lkjt4")
 
 [node name="player" parent="." unique_id=220864025 instance=ExtResource("1_72lju")]
 position = Vector2(938, 484)
 scale = Vector2(0.25, 0.25)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=36553107]
+tile_map_data = PackedByteArray("AAAuACgAAAACAAEAAAAwACgAAAACAAAAAAAvACgAAAACAAAAAAAyACgAAAACAAAAAAAxACgAAAACAAAAAAAzACgAAAACAAAAAAA0ACgAAAACAAAAAAA1ACgAAAACAAAAAAA2ACgAAAACAAAAAAA4ACgAAAACAAAAAAA3ACgAAAACAAAAAAA5ACgAAAACAAAAAAA7ACgAAAACAAAAAAA6ACgAAAACAAAAAAA8ACgAAAACAAAAAAA9ACgAAAACAAAAAAA+ACgAAAACAAAAAAA/ACgAAAACAAAAAABAACgAAAADAAEAAAAuAB4AAAAAAAMAAAAuAB8AAAADAAAAAAAuACAAAAADAAAAAAAuACEAAAACAAMAAAAvACEAAAABAAMAAAAvACIAAAACAAMAAAAwACIAAAACAAAAAAAxACIAAAACAAAAAAAyACIAAAACAAAAAAAzACIAAAADAAMAAAAzACEAAAADAAAAAAAzACAAAAADAAAAAAAzAB8AAAADAAAAAAAzAB4AAAABAAMAAAAyAB4AAAACAAAAAAAxAB4AAAACAAAAAAAwAB4AAAACAAAAAAAvAB4AAAACAAAAAABAACsAAAACAAEAAABBACsAAAACAAAAAABCACsAAAACAAAAAABDACsAAAACAAAAAABEACsAAAADAAEAAABEACYAAAACAAEAAABFACYAAAACAAAAAABGACYAAAACAAAAAABHACYAAAACAAAAAABIACYAAAACAAAAAABJACYAAAACAAAAAABKACYAAAADAAEAAABJAC0AAAADAAAAAABJAC4AAAACAAMAAABKAC4AAAACAAAAAABLAC4AAAADAAMAAABLAC0AAAADAAAAAABLACwAAAABAAMAAABKACwAAAACAAAAAABJACwAAAAAAAMAAAA=")
+tile_set = ExtResource("2_lkjt4")
