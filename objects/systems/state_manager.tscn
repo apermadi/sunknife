@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ddr8m834ul48y"]
+
+[ext_resource type="Script" uid="uid://bip1jigggwhys" path="res://objects/systems/state.gd" id="1_srxw7"]
+[ext_resource type="Script" uid="uid://ckdkox3r1jplg" path="res://objects/systems/state_machine.gd" id="1_tmfrh"]
+[ext_resource type="Script" uid="uid://ceqldfo171mlt" path="res://objects/systems/patrol.gd" id="3_5fo32"]
+[ext_resource type="Script" uid="uid://cgskn38imu1e5" path="res://objects/systems/attack.gd" id="4_so7ra"]
+
+[node name="StateManager" type="Node" unique_id=2067319349]
+script = ExtResource("1_tmfrh")
+
+[node name="state" type="Node" parent="." unique_id=1815309626]
+script = ExtResource("1_srxw7")
+
+[node name="patrol" type="Node" parent="state" unique_id=267987358]
+script = ExtResource("3_5fo32")
+
+[node name="attack" type="Node" parent="state" unique_id=510412993]
+script = ExtResource("4_so7ra")

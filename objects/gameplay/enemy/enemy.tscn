@@ -1,11 +1,23 @@
 [gd_scene format=3 uid="uid://cie5v80o7xos1"]
 
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_4yiqm"]
+[ext_resource type="Script" uid="uid://cvlhxn8vxqtk1" path="res://objects/gameplay/enemy/enemy.gd" id="1_61l24"]
+[ext_resource type="Script" uid="uid://ckdkox3r1jplg" path="res://objects/systems/state_machine.gd" id="2_t8kjw"]
+[ext_resource type="Script" uid="uid://bip1jigggwhys" path="res://objects/systems/state.gd" id="3_tp2op"]
+[ext_resource type="Script" uid="uid://ceqldfo171mlt" path="res://objects/systems/patrol.gd" id="4_xeq3p"]
+[ext_resource type="Script" uid="uid://cgskn38imu1e5" path="res://objects/systems/attack.gd" id="5_61l24"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_21odq"]
 size = Vector2(108, 106)
 
+[sub_resource type="Curve2D" id="Curve2D_61l24"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -300, 0, 0, 0, 0, 0, 300, 0)
+}
+point_count = 2
+
 [node name="Enemy" type="CharacterBody2D" unique_id=1716923641]
+script = ExtResource("1_61l24")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=161152155]
 modulate = Color(1, 0, 1, 1)
@@ -14,3 +26,20 @@ texture = ExtResource("1_4yiqm")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=707604143]
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_21odq")
+
+[node name="StateManager" type="Node" parent="." unique_id=1895833025]
+script = ExtResource("2_t8kjw")
+metadata/_custom_type_script = "uid://ckdkox3r1jplg"
+
+[node name="state" type="Node" parent="StateManager" unique_id=1765520635]
+script = ExtResource("3_tp2op")
+
+[node name="patrol" type="Node" parent="StateManager/state" unique_id=1219154661 node_paths=PackedStringArray("root_enemy")]
+script = ExtResource("4_xeq3p")
+root_enemy = NodePath("../../..")
+
+[node name="attack" type="Node" parent="StateManager/state" unique_id=1475061837]
+script = ExtResource("5_61l24")
+
+[node name="Path2D" type="Path2D" parent="." unique_id=1044044615]
+curve = SubResource("Curve2D_61l24")
